@@ -6,38 +6,43 @@ using Photon.Pun;
 public class PlayerMove : MonoBehaviourPunCallbacks
 {
     PhotonView pv;
-    private Transform playerTransform;
-    public Camera mainCam;
-    private Transform camTransform;
-    private CharacterController charCtrl;
-    private float moveSpeed = 2f;
+    public GameObject player;
+    public GameObject mainCam;
+    float moveSpeed = 1f;
+    float cur_angle;
+    float prev_angle;
+    float delta_angle;
 
     void Start()
     {
         pv = this.GetComponent<PhotonView>();
-        if(!pv.IsMine) return;
-
-        GameObject.Find("GunInUI").layer = 9;  //내 카메라에서만 보에게끔
-        playerTransform = this.GetComponent<Transform>();
-        camTransform = mainCam.GetComponent<Transform>();
-        charCtrl = this.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //if(!pv.IsMine) return;
         MoveLookAt();
     }
 
     void MoveLookAt(){
-        //메인카메라가 바라보는 방향입니다.
-        Vector3 dir = mainCam.transform.localRotation * Vector3.forward;
-        //카메라가 바라보는 방향으로 팩맨도 바라보게 합니다.
-        transform.localRotation = mainCam.transform.localRotation;
-        //transform.localRotation = new Quaternion(0, transform.localRotation.y, 0, transform.localRotation.w);
-        transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y, 0));
-        //바라보는 시점 방향으로 이동합니다.
-        transform.Translate(dir * moveSpeed * Time.deltaTime );
-        transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
+        this.transform.Translate(mainCam.transform.forward * moveSpeed);
+
+        cur_angle = mainCam.transform.eulerAngles.y;
+        delta_angle = cur_angle - prev_angle;
+        prev_angle = cur_angle;
+
+        if(delta_angle < 0){
+            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, 
+                Quaternion.Euler(player.transform.eulerAngles.x, player.transform.eulerAngles.y, 45), Time.deltaTime);
+        }
+        else if(delta_angle > 0){
+            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, 
+                Quaternion.Euler(player.transform.eulerAngles.x, player.transform.eulerAngles.y, -45), Time.deltaTime);
+        }
+        else {
+            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, 
+                Quaternion.Euler(player.transform.eulerAngles.x, player.transform.eulerAngles.y, 0), Time.deltaTime);
+        }
     }
 }
