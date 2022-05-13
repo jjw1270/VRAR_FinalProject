@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviourPunCallbacks
     PhotonView pv;
     public GameObject player;
     public GameObject mainCam;
-    float moveSpeed = 1f;
+    float moveSpeed = 0.05f;
     float cur_angle;
     float prev_angle;
     float delta_angle;
@@ -22,6 +22,9 @@ public class PlayerMove : MonoBehaviourPunCallbacks
     void Update()
     {
         //if(!pv.IsMine) return;
+        moveSpeed += 0.05f * Time.deltaTime;
+        if(moveSpeed >= 0.8f)
+            moveSpeed = 0.8f;
         MoveLookAt();
     }
 
