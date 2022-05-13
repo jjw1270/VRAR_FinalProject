@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Button
-  - enemy
   - MapColli
-  - Floor
+  - Boundary
+  - Mine
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - PostProcessing
   - Mine
   - NotMine
-  - 
+  - Map
   - 
   - 
   - 

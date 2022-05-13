@@ -27,6 +27,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.G
 e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 11bdd61587db747672b66c52442395d8 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.ServerAddressProperty
+5b26620fc98d13bef1b5e19ae22f021c Assembly-CSharp.dll:.ProfRot
 ee1dba1a186ac062d564e9eb73a1c56f PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.GraphicToggleIsOnTransition
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:Gvr.Internal.EditorCameraOriginDict
 c656dcc13ae391b68d594cc8f9c590b0 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.CurrentRoomMaxPlayersProperty
@@ -213,7 +214,7 @@ c656dcc13ae391b68d594cc8f9c590b0 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo
 c656dcc13ae391b68d594cc8f9c590b0 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.CurrentRoomEmptyRoomTtlProperty
 1f8286dbbba9b39b9120dec32b8944e4 Assembly-CSharp.dll:.GvrLaserPointer
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
-afbff10a52a7444de8aa6ca93490591e Assembly-CSharp.dll:.PlayerMove
+109faa80c1e2b3c484be95ed222f4476 Assembly-CSharp.dll:.PlayerMove
 d9aa52c5a283a9b8a790e55c0dee9ccf PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.RegionListCell
 c656dcc13ae391b68d594cc8f9c590b0 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.IsConnectedProperty
 47cb13937d80a450aefeced75a0d46a3 PhotonUnityNetworking.dll:Photon.Pun.ServerSettings
@@ -352,9 +353,9 @@ e4aa02db6487ad3aebb8e2f22ee6b699 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo
 682d4da29621f1e31a31c1d5930918e6 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.Forms.ConnectToRegionUIForm
 5f4d6e57084c42d31cf00600fe2c939d PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.BoolInputField
 719e5a8f63dda20dad1ba86875c22268 Assembly-CSharp.dll:GoogleVR.VideoDemo.AutoPlayVideo
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.PlayerCtrl
 46a296a078af6e2a02857aa18e9cdf2b PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.CountdownTimer
 9ef0ed9504edb9d0914e240dee1b7846 Assembly-CSharp.dll:GoogleVR.Beta.GvrBetaControllerVisualMulti
 491877540590e03bc0107ec60a521be4 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.Forms.UserIdUiForm
 c656dcc13ae391b68d594cc8f9c590b0 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Cockpit.CountOfRoomsProperty
 f0c4eb24258257daca58a9939f0894d2 PhotonUnityNetworking.Demos.dll:Photon.Pun.Demo.Asteroids.LobbyTopPanel
-afbff10a52a7444de8aa6ca93490591e Assembly-CSharp.dll:.PlayerCam
