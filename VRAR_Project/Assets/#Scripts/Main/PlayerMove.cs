@@ -20,26 +20,27 @@ public class PlayerMove : MonoBehaviourPun
     float time = 10f;
     public GameObject explosionEffect;
     public bool isDestroy;
-    public GameObject prop;
-    private float propSpeed = 500f;
+    
     public AudioSource audioSourceE;
     public AudioClip explosionSound;
 
     void Start()
     {
-        pv = this.GetComponent<PhotonView>();
         audioSourceE.Play();
-        // if(!pv.IsMine)
-        //     mainCam.GetComponent<Camera>().enabled = false;
+        pv = this.GetComponent<PhotonView>();
         
+        if(!pv.IsMine){
+             mainCam.GetComponent<Camera>().enabled = false;
+             mainCam.GetComponent<AudioListener>().enabled = false;
+             return;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isDestroy)
-            prop.transform.Rotate(Vector3.up * propSpeed);
-        //if(!pv.IsMine) return;
+        if(!pv.IsMine) return;
+
         moveSpeed += 0.2f * Time.deltaTime;
         if(moveSpeed >= 1f)
             moveSpeed = 1f;

@@ -20,7 +20,9 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
     private PlayerMove pm;
     void Start()
     {
-        //if(!pv.IsMine) return;
+        pv = this.GetComponent<PhotonView>();
+        if(!pv.IsMine) return;
+
         pm = this.GetComponent<PlayerMove>();
         this.gameObject.tag = "Mine";
         screenCenter = new Vector3(mainCam.pixelWidth / 2, mainCam.pixelHeight / 2);
@@ -29,6 +31,8 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
 
     void Update()
     {
+        if(!pv.IsMine) return;
+
         if(!pm.isDestroy)
             rayCtrl();
         
@@ -42,6 +46,7 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
         if(Physics.Raycast(ray, out hit, 10000f)){
             if(hit.transform.CompareTag("Enemy")){
                 aim.color = Color.red;
+                pv.RPC("Fire", RpcTarget.Others, hit.transform.gameObject);
                 if(!isDelay){
                     isDelay = true;
                     FireSound(hit.transform);
@@ -80,5 +85,10 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
 
         fireEffect[0].SetActive(true);
         fireEffect[1].SetActive(true);
+    }
+
+    [PunRPC]
+    void Fire(GameObject enemy){
+        //isFire = ture;
     }
 }
