@@ -63,8 +63,11 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
                 aim.color = aimColor;
             }
         }
+        else{
+        }
     }
     IEnumerator fireSoundDelay(){
+        Debug.Log("발사");
         yield return new WaitForSeconds(delayTime);
         isDelay = false;
     }

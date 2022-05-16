@@ -41,8 +41,8 @@ public class PlayerMove : MonoBehaviourPun
             prop.transform.Rotate(Vector3.up * propSpeed);
         //if(!pv.IsMine) return;
         moveSpeed += 0.2f * Time.deltaTime;
-        if(moveSpeed >= 0.4f)
-            moveSpeed = 0.4f;
+        if(moveSpeed >= 1f)
+            moveSpeed = 1f;
         MoveLookAt();
 
         if(isWarning){
