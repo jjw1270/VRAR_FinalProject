@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviourPun
     private bool isWarning;
     float time = 10f;
     public GameObject explosionEffect;
-    public bool isDestroy;
+    public bool isDestroy = false;
     
     public AudioSource audioSourceE;
     public AudioClip explosionSound;
@@ -27,7 +27,7 @@ public class PlayerMove : MonoBehaviourPun
     void Start()
     {
         audioSourceE.Play();
-        pv = this.GetComponent<PhotonView>();
+        pv = GameObject.Find("Super_Spitfire").GetComponent<PhotonView>();
         
         if(!pv.IsMine){
              mainCam.GetComponent<Camera>().enabled = false;
@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviourPun
         moveSpeed += 0.2f * Time.deltaTime;
         if(moveSpeed >= 1f)
             moveSpeed = 1f;
-        MoveLookAt();
+        
 
         if(isWarning){
             warningText.SetActive(true);
@@ -61,6 +61,9 @@ public class PlayerMove : MonoBehaviourPun
             warningText.SetActive(false);
             warningCount.text = "";
         }
+    }
+    private void LateUpdate() {
+        MoveLookAt();
     }
 
     void MoveLookAt(){

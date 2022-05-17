@@ -14,6 +14,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public InputField playerNameInput;
     public string playerName = null;
     
+    void Awake() {
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
     void Start()
     {
         PhotonNetwork.GameVersion = gameVersion;
@@ -67,6 +70,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //접속 상태 표시
         connectionInfoText.text = "방 참가 성공";
         //모든 룸 참가자들이 Main 씬을 로드하게 함
+        PhotonNetwork.IsMessageQueueRunning = false;
         PhotonNetwork.LoadLevel("MainScene");
     }
 

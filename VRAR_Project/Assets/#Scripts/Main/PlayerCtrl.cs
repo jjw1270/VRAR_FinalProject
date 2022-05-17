@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class PlayerCtrl : MonoBehaviourPunCallbacks
 {
@@ -18,12 +19,16 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
     private float delayTime = 1.3f;
     private bool isLFS;
     private PlayerMove pm;
+    public Text playerName;
     void Start()
     {
-        pv = this.GetComponent<PhotonView>();
+        pm = this.GetComponent<PlayerMove>();
+
+        pv = GameObject.Find("Super_Spitfire").GetComponent<PhotonView>();
+        playerName.text = PhotonNetwork.LocalPlayer.NickName;
         if(!pv.IsMine) return;
 
-        pm = this.GetComponent<PlayerMove>();
+        
         this.gameObject.tag = "Mine";
         screenCenter = new Vector3(mainCam.pixelWidth / 2, mainCam.pixelHeight / 2);
         aimColor = aim.color;
