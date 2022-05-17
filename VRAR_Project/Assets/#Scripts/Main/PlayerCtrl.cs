@@ -20,6 +20,10 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
     private bool isLFS;
     private PlayerMove pm;
     public Text playerName;
+    public bool isHit;
+    public Slider hpBar;
+    private float maxHP = 100f;
+    private float curHP = 100f;
     void Start()
     {
         pm = this.GetComponent<PlayerMove>();
@@ -38,8 +42,12 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
     {
         if(!pv.IsMine) return;
 
-        if(!pm.isDestroy)
+        if(!pm.isDestroy){
             rayCtrl();
+            hpBar.value = curHP / maxHP;
+            if(isHit)
+                IDamaged();
+        }
         
     }
 
@@ -54,8 +62,8 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
                 pv.RPC("Fire", RpcTarget.Others, hit.transform.gameObject);
                 if(!isDelay){
                     isDelay = true;
-                    FireSound(hit.transform);
-                    StartCoroutine(fireSoundDelay());
+                    FireSound();
+                    StartCoroutine(fireSoundDelay(hit.transform));
                 }
             }
             else{
@@ -65,7 +73,6 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
                     if(!isLFS){
                         isLFS = true;
                         audioSourceF.Stop();
-                        //audioSourceF.clip = lastFireSound;
                         audioSourceF.volume = 0.6f;
                         audioSourceF.PlayOneShot(lastFireSound);
                     }
@@ -76,24 +83,35 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
         else{
         }
     }
-    IEnumerator fireSoundDelay(){
+    IEnumerator fireSoundDelay(Transform enemy){
         Debug.Log("발사");
+        photonView.RPC("Fire", RpcTarget.Others, enemy);
         yield return new WaitForSeconds(delayTime);
         isDelay = false;
     }
-    void FireSound(Transform target){
+    void FireSound(){
         isLFS = false;
-        //audioSourceF.clip = fireSound;
         audioSourceF.Stop();
+        audioSourceF.clip = fireSound;
         audioSourceF.volume = 1.0f;
-        audioSourceF.PlayOneShot(fireSound);
+        audioSourceF.Play();/////////////////////
 
         fireEffect[0].SetActive(true);
         fireEffect[1].SetActive(true);
     }
 
+    void IDamaged(){
+        {
+            isHit = false;
+            curHP -= 10;
+            
+            //HP감소, 피격이펙트
+        }
+    }
+    
+
     [PunRPC]
     void Fire(GameObject enemy){
-        //isFire = ture;
+        enemy.GetComponent<PlayerCtrl>().isHit = true;
     }
 }
