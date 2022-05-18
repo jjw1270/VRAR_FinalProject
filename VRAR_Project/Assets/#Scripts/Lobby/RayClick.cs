@@ -15,7 +15,6 @@ public class RayClick : MonoBehaviour
         screenCenter = new Vector3(mainCam.pixelWidth / 2, mainCam.pixelHeight / 2);
     }
 
-    // Update is called once per frame
     void Update()
     {
         Ray ray = mainCam.ScreenPointToRay(screenCenter);

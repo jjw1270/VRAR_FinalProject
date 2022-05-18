@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
-using Photon.Realtime;
 
-public class PlayerCtrl : MonoBehaviourPunCallbacks
+public class PlayerCtrl : MonoBehaviour
 {
     public Camera mainCam;
     private Vector3 screenCenter;
+    public GameObject player;
     public Image aim;
     private Color aimColor;
-    private PhotonView pv;
     public AudioSource audioSourceF;
     public AudioClip fireSound, lastFireSound;
     public GameObject[] fireEffect;
@@ -19,36 +17,32 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
     private float delayTime = 1.3f;
     private bool isLFS;
     private PlayerMove pm;
-    public Text playerName;
     public bool isHit;
-    public Slider hpBar;
+    public Image hpBar;
     private float maxHP = 100f;
     private float curHP = 100f;
     void Start()
     {
         pm = this.GetComponent<PlayerMove>();
 
-        pv = GameObject.Find("Super_Spitfire").GetComponent<PhotonView>();
-        playerName.text = PhotonNetwork.LocalPlayer.NickName;
-        if(!pv.IsMine) return;
-
-        
-        this.gameObject.tag = "Mine";
+        this.gameObject.tag = "Player";
         screenCenter = new Vector3(mainCam.pixelWidth / 2, mainCam.pixelHeight / 2);
         aimColor = aim.color;
     }
 
     void Update()
     {
-        if(!pv.IsMine) return;
+        if(GameManager.isGamePaused) return;
 
-        if(!pm.isDestroy){
+        if(!PlayerMove.isDestroy){
             rayCtrl();
-            hpBar.value = curHP / maxHP;
+            hpBar.fillAmount = curHP / maxHP;
             if(isHit)
                 IDamaged();
+            if(curHP <= 0f){
+                pm.destroy();
+            }
         }
-        
     }
 
     void rayCtrl(){
@@ -59,7 +53,6 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
         if(Physics.Raycast(ray, out hit, 10000f)){
             if(hit.transform.CompareTag("Enemy")){
                 aim.color = Color.red;
-                pv.RPC("Fire", RpcTarget.Others, hit.transform.gameObject);
                 if(!isDelay){
                     isDelay = true;
                     FireSound();
@@ -80,12 +73,11 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
                 aim.color = aimColor;
             }
         }
-        else{
-        }
+
     }
     IEnumerator fireSoundDelay(Transform enemy){
         Debug.Log("발사");
-        photonView.RPC("Fire", RpcTarget.Others, enemy);
+        enemy.GetComponent<PlayerCtrl>().isHit = true;////////////수정필
         yield return new WaitForSeconds(delayTime);
         isDelay = false;
     }
@@ -94,7 +86,7 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
         audioSourceF.Stop();
         audioSourceF.clip = fireSound;
         audioSourceF.volume = 1.0f;
-        audioSourceF.Play();/////////////////////
+        audioSourceF.Play();
 
         fireEffect[0].SetActive(true);
         fireEffect[1].SetActive(true);
@@ -107,11 +99,5 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
             
             //HP감소, 피격이펙트
         }
-    }
-    
-
-    [PunRPC]
-    void Fire(GameObject enemy){
-        enemy.GetComponent<PlayerCtrl>().isHit = true;
     }
 }

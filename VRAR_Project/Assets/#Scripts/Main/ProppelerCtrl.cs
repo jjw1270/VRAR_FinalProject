@@ -13,7 +13,7 @@ public class ProppelerCtrl : MonoBehaviour
 
     void Update()
     {
-        if(!pm.isDestroy)
+        if(!PlayerMove.isDestroy)
             this.transform.Rotate(Vector3.up * propSpeed);
     }
 }
