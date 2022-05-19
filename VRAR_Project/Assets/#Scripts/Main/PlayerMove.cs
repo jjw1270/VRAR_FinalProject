@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
     public GameObject player;
     public GameObject mainCam;
-    float moveSpeed = 0.05f;
+    float moveSpeed = 0.8f;
     float cur_angle;
     float prev_angle;
     float delta_angle;
@@ -36,10 +36,6 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         if(GameManager.isGamePaused) return;
-        //이동속도
-        moveSpeed += 0.2f * Time.deltaTime;
-        if(moveSpeed >= 1f)
-            moveSpeed = 1f;
         
         //맵 밖으로 나갔을 때 경고
         if(isWarning){

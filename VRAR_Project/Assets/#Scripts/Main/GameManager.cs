@@ -62,8 +62,10 @@ public class GameManager : MonoBehaviour
 
         range_x = Random.Range((range_x / 2) * -1, range_x / 2);
         range_z = Random.Range((range_z / 2) * -1, range_z / 2);
+        Vector3 randomPosition = new Vector3(range_x, Random.Range(0,200), range_z);
+        originSpPosition += randomPosition;
 
-        spawnedPlayer = Instantiate(player, new Vector3(range_x, 1100, range_z), Quaternion.identity);
+        spawnedPlayer = Instantiate(player, originSpPosition, Quaternion.identity);
     }
 
     public void DestroyPlayer(){

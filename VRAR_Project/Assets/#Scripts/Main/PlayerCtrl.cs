@@ -11,11 +11,10 @@ public class PlayerCtrl : MonoBehaviour
     public Image aim;
     private Color aimColor;
     public AudioSource audioSourceF;
-    public AudioClip fireSound, lastFireSound;
+    public AudioClip fireSound;
     public GameObject[] fireEffect;
     private bool isDelay = false;
     private float delayTime = 1.3f;
-    private bool isLFS;
     private PlayerMove pm;
     public bool isHit;
     public Image hpBar;
@@ -55,7 +54,6 @@ public class PlayerCtrl : MonoBehaviour
                 aim.color = Color.red;
                 if(!isDelay){
                     isDelay = true;
-                    FireSound();
                     StartCoroutine(fireSoundDelay(hit.transform));
                 }
             }
@@ -63,33 +61,22 @@ public class PlayerCtrl : MonoBehaviour
                 fireEffect[0].SetActive(false);
                 fireEffect[1].SetActive(false);
                 if(isDelay){
-                    if(!isLFS){
-                        isLFS = true;
-                        audioSourceF.Stop();
-                        audioSourceF.volume = 0.6f;
-                        audioSourceF.PlayOneShot(lastFireSound);
-                    }
+                    StopAllCoroutines();
+                    isDelay = false;
                 }
+                audioSourceF.Stop();
                 aim.color = aimColor;
             }
         }
 
     }
     IEnumerator fireSoundDelay(Transform enemy){
-        Debug.Log("발사");
-        enemy.GetComponent<PlayerCtrl>().isHit = true;////////////수정필
-        yield return new WaitForSeconds(delayTime);
-        isDelay = false;
-    }
-    void FireSound(){
-        isLFS = false;
-        audioSourceF.Stop();
-        audioSourceF.clip = fireSound;
-        audioSourceF.volume = 1.0f;
-        audioSourceF.Play();
-
         fireEffect[0].SetActive(true);
         fireEffect[1].SetActive(true);
+        audioSourceF.clip = fireSound;
+        audioSourceF.Play();
+        yield return new WaitForSeconds(delayTime);
+        isDelay = false;
     }
 
     void IDamaged(){
