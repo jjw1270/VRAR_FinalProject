@@ -7,7 +7,7 @@ public class EnemyBoomCtrl : MonoBehaviour
     Transform target;
     public Renderer changeColorObj;
     private Color objColor;
-    private bool isOn;
+    private bool isOn = false;
     public GameObject ExplosionEffect;
 
     void Start()
@@ -20,20 +20,21 @@ public class EnemyBoomCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(isOn)
+            this.transform.localScale += Vector3.one * 10f * Time.deltaTime;
     }
 
     void OnDrawGizmos() {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, 100f);
+        Gizmos.DrawWireSphere(transform.position, 300f);
     }
 
     private void UpdateTarget(){
-        Collider [] cols = Physics.OverlapSphere(transform.position, 100f, 1<<9);
+        Collider [] cols = Physics.OverlapSphere(transform.position, 300f, 1<<9);
         
         if(cols.Length>0){
             Debug.Log("나를 발견");
-            target = cols[0].gameObject.transform;
+            isOn = true;
             CancelInvoke("UpdateTarget");
             changeColorObj.material.color = Color.red;
             Invoke("Explosion", 3f);

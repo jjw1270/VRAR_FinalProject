@@ -5350,7 +5350,6 @@ GameObject:
   - component: {fileID: 1443831854248619663}
   - component: {fileID: 1443831854247744079}
   - component: {fileID: 1443831854246697841}
-  - component: {fileID: 7889736167465718090}
   m_Layer: 0
   m_Name: proppeler
   m_TagString: Untagged
@@ -5417,18 +5416,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7889736167465718090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443831854248771551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fdd5bdd79fd0364f8964b9d6307e189, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1443831854248825453
 GameObject:
   m_ObjectHideFlags: 0
@@ -11241,7 +11228,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2871
+    m_Bits: 12087
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -11286,6 +11273,7 @@ GameObject:
   - component: {fileID: 4091745396623124387}
   - component: {fileID: 4091745396623124390}
   - component: {fileID: 54861490298899236}
+  - component: {fileID: 4903205885370240566}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -11320,8 +11308,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.5236816, y: 3.0689697, z: 3.1841831}
-  m_Center: {x: -0.014526367, y: -0.68963623, z: 4.4287205}
+  m_Size: {x: 5.745117, y: 3.4296875, z: 3.1841831}
+  m_Center: {x: -0.0021972656, y: -1.3741455, z: 4.4287205}
 --- !u!114 &4091745396623124387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11381,6 +11369,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4903205885370240566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091745396623124413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdd5bdd79fd0364f8964b9d6307e189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proppeler: {fileID: 1443831854248771551}
 --- !u!1 &4091745396631601095
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class UICamCtrl : MonoBehaviour
         Ray ray = pauseCam.ScreenPointToRay(screenCenter);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, 1000f)){
+        if(Physics.Raycast(ray, out hit, 500f,1<<5)){
             if(hit.collider.CompareTag("Button")){
                 aim.color = Color.red;
                 if(Input.GetMouseButtonDown(0)){

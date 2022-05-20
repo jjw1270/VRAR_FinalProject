@@ -46,18 +46,21 @@ public class PlayerCtrl : MonoBehaviour
 
     void rayCtrl(){
         Ray ray = mainCam.ScreenPointToRay(screenCenter);
-        Debug.DrawRay(mainCam.transform.position, mainCam.transform.forward * 10000f, Color.red);
+        Debug.DrawRay(mainCam.transform.position, mainCam.transform.forward * 5000f, Color.red);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, 5000f)){
+        if(Physics.Raycast(ray, out hit, 5000f, 1<<10)){
+            Debug.Log(hit.collider.gameObject.tag);
             if(hit.transform.CompareTag("Enemy")){
+                Debug.Log("???");
                 aim.color = Color.red;
                 if(!isDelay){
                     isDelay = true;
                     StartCoroutine(fireSoundDelay(hit.transform));
                 }
             }
-            else{
+        }
+        else{
                 fireEffect[0].SetActive(false);
                 fireEffect[1].SetActive(false);
                 if(isDelay){
@@ -67,7 +70,6 @@ public class PlayerCtrl : MonoBehaviour
                 audioSourceF.Stop();
                 aim.color = aimColor;
             }
-        }
 
     }
     IEnumerator fireSoundDelay(Transform enemy){

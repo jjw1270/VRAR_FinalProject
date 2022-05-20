@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class ProppelerCtrl : MonoBehaviour
 {
-    private PlayerMove pm;
+    public GameObject proppeler;
     private float propSpeed = 500f;
     void Start()
     {
-        pm = transform.root.GetComponent<PlayerMove>();
+
     }
 
     void Update()
     {
-        if(!PlayerMove.isDestroy)
-            this.transform.Rotate(Vector3.up * propSpeed);
+            proppeler.transform.Rotate(Vector3.up * propSpeed);
     }
 }

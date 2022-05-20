@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyPlaneCtrl : MonoBehaviour
 {
     private Transform[] waypoint;
-    private float speed = 1f;
-    public float damping = 3.0f;
+    private float speed = 0.8f;
+    public float damping = 4.0f;
     private int nextIndex;
     Transform target;
     public AudioSource audioSource;
@@ -28,14 +28,13 @@ public class EnemyPlaneCtrl : MonoBehaviour
             MoveWayPoint();
         else{
             RaycastHit hit;
-            if(Physics.Raycast(transform.position, transform.forward, out hit, 500f)){
-                Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.blue);
+            Debug.DrawRay(transform.position, transform.forward * 500f, Color.blue);
+            if(Physics.Raycast(transform.position, transform.forward, out hit, 500f, 1<<9)){
                 if(hit.transform.CompareTag("Player")){
                     if(!isDelay){
                         isDelay = true;
                         StartCoroutine(fireSoundDelay(hit.transform));
                     }
-                    
                 }
             }
             else{
@@ -47,13 +46,13 @@ public class EnemyPlaneCtrl : MonoBehaviour
                 }
             }
             Vector3 dir = target.position - this.transform.position;
-            this.transform.Translate(dir.normalized * speed * Time.deltaTime);
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * damping);
+            this.transform.Translate(dir.normalized * speed * Time.deltaTime * 50f);
         }
     }
     void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 300f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 400f);
     }
 
     IEnumerator fireSoundDelay(Transform player){
@@ -74,28 +73,23 @@ public class EnemyPlaneCtrl : MonoBehaviour
     }
 
     private void UpdateTarget(){
-        Collider [] cols = Physics.OverlapSphere(transform.position, 300f, 1<<9);
+        Collider [] cols = Physics.OverlapSphere(transform.position, 400f, 1<<9);
         
         if(cols.Length>0){
-            Debug.Log("나를 발견");
+            Debug.Log("플레이어 발견");
             target = cols[0].gameObject.transform;
         }
         else{
-            Debug.Log("나를 놓침");
             target = null;
         }
     }
 
     void OnTriggerEnter(Collider other) {
         if(other.CompareTag("WayPath")){
-            if((nextIndex+1) >= waypoint.Length)
-                nextIndex = 1;
-            else if((nextIndex+2) >= waypoint.Length)
-                nextIndex += 1;
-            else if(nextIndex==1)
-                nextIndex = Random.Range(2, waypoint.Length-2);
-            else
-                nextIndex = Random.Range(nextIndex+1, nextIndex+2);
+            int tmp = nextIndex;
+            do{
+                nextIndex = Random.Range(1, waypoint.Length);
+            }while(nextIndex == tmp);
         }
     }
 }

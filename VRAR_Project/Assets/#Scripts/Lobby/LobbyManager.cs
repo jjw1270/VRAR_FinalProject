@@ -38,6 +38,7 @@ public class LobbyManager : MonoBehaviour
 
     public void InputName(){
         playerNameInput.Select();
+        TouchScreenKeyboard.Open("",TouchScreenKeyboardType.Default,false,false,false,false);
     }
 
     public void SaveName(){

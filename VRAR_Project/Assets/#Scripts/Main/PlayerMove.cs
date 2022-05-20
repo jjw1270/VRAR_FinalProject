@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
     public GameObject player;
     public GameObject mainCam;
-    float moveSpeed = 50.0f;
+    float moveSpeed = 100.0f;
     float cur_angle;
     float prev_angle;
     float delta_angle;

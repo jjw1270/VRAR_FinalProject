@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Transform[] points;
+    public Transform spawnPoint;
     public GameObject player;
+    public GameObject[] enemy;
+    private int enemyCount = 0;
     GameObject spawnedPlayer;
 
     private float lastTouchTime;
@@ -19,18 +21,24 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         lastTouchTime = Time.time;
-        CreatePlayer();
+        CreateObj(1);
     }
 
     void Update(){
-        if(lifeCount == 0) {
-            //목숨3개!
-            //게임오버 UI(일시정지 UI) + 스코어
+
+        if(enemyCount < 20){
+            CreateObj(2);
         }
 
         if(PlayerMove.isDestroy){
+            lifeCount--;
             PlayerMove.isDestroy = false;
-            Invoke("DestroyPlayer", 3f);
+            if(lifeCount == 0) {
+            //목숨3개!
+            //게임오버 UI(일시정지 UI) + 스코어
+            }
+            else
+                Invoke("DestroyPlayerAndSpawn", 3f);
         }
 
         //더블 터치 시 일시정지 + UI
@@ -48,28 +56,33 @@ public class GameManager : MonoBehaviour
                     break;
             }
         }
+        if(Input.GetKeyDown(KeyCode.P))
+            Pause();
     }
 
-    void CreatePlayer(){
-        int sp = Random.Range(0, points.Length);
-        BoxCollider randomSp = points[sp].GetComponent<BoxCollider>();
-        Vector3 originSpPosition = points[sp].position;
+    void CreateObj(int obj){
+        BoxCollider Sp = spawnPoint.GetComponent<BoxCollider>();
+        Vector3 originSpPosition = spawnPoint.position;
         //콜라이더의 사이즈를 가져오는 bound.size 사용
-        float range_x = randomSp.bounds.size.x;
-        float range_z = randomSp.bounds.size.z;
+        float range_x = Sp.bounds.size.x;
+        float range_z = Sp.bounds.size.z;
 
         range_x = Random.Range((range_x / 2) * -1, range_x / 2);
         range_z = Random.Range((range_z / 2) * -1, range_z / 2);
-        Vector3 randomPosition = new Vector3(range_x, Random.Range(0,200), range_z);
+        Vector3 randomPosition = new Vector3(range_x, Random.Range(0,500), range_z);
         originSpPosition += randomPosition;
 
-        spawnedPlayer = Instantiate(player, originSpPosition, Quaternion.identity);
+        if(obj == 1)
+            spawnedPlayer = Instantiate(player, originSpPosition, Quaternion.identity);
+        else{
+            Instantiate(enemy[Random.Range(0,enemy.Length)], originSpPosition, Quaternion.identity);
+            enemyCount++;
+        }
     }
 
-    public void DestroyPlayer(){
-        lifeCount-=1;
+    public void DestroyPlayerAndSpawn(){
         Destroy(spawnedPlayer);
-        CreatePlayer();
+        CreateObj(1);
     }
 
     public void Resume(){

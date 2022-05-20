@@ -169,6 +169,7 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 9b895dcabbc1faf095c000c32d471fd0 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 53ce9a4d3b026469b394261470c07be7 Assembly-CSharp.dll:Gvr.Internal.InstantPreview
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.HPCtrl
 245e167b749c6a7e7db841e6b0d3d749 Assembly-CSharp.dll:GoogleVR.Beta.GvrBetaHeadset
 35a9693c388776aaf487636491a20f11 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 e1300922cc039f41ab46a47f4cb05898 Unity.TextMeshPro.dll:TMPro.TMP_Settings
@@ -226,4 +227,3 @@ f0077b931a26a7eeaf5e245c7ef51ec4 Assembly-CSharp.dll:.GvrPointerInputModule
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.GvrXREventsSubscriber
 8ff68079635399589a04ffe47e369fae Assembly-CSharp.dll:.PlayerCtrl
 9ef0ed9504edb9d0914e240dee1b7846 Assembly-CSharp.dll:GoogleVR.Beta.GvrBetaControllerVisualMulti
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.HPCtrl

@@ -756,7 +756,8 @@ GameObject:
   - component: {fileID: 65100410215128936}
   - component: {fileID: 114876342179063422}
   - component: {fileID: 54125355424487530}
-  m_Layer: 0
+  - component: {fileID: 3843790749248782684}
+  m_Layer: 10
   m_Name: Enemy_Plane
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -835,7 +836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b720c21ca7d5541875713641795bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
   damping: 3
   audioSource: {fileID: 8897204161613584878}
   fireEffect:
@@ -857,6 +857,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3843790749248782684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119833477910809200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdd5bdd79fd0364f8964b9d6307e189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proppeler: {fileID: 1119833477910809194}
 --- !u!1 &1119833477910809202
 GameObject:
   m_ObjectHideFlags: 0
