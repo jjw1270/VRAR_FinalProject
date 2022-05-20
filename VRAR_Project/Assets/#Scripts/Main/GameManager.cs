@@ -39,9 +39,7 @@ public class GameManager : MonoBehaviour
             switch(touch.phase){
                 case TouchPhase.Began:
                     if(Time.time - lastTouchTime < doubleTouchDelay){  //더블터치판정
-                        if(isGamePaused)
-                            Resume();
-                        else
+                        if(!isGamePaused)
                             Pause();
                     }
                     break;

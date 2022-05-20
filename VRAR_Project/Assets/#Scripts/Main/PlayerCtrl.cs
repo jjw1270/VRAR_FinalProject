@@ -49,7 +49,7 @@ public class PlayerCtrl : MonoBehaviour
         Debug.DrawRay(mainCam.transform.position, mainCam.transform.forward * 10000f, Color.red);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, 10000f)){
+        if(Physics.Raycast(ray, out hit, 5000f)){
             if(hit.transform.CompareTag("Enemy")){
                 aim.color = Color.red;
                 if(!isDelay){

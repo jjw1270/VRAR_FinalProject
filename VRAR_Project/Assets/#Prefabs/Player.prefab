@@ -11285,6 +11285,7 @@ GameObject:
   - component: {fileID: 4091745396623124385}
   - component: {fileID: 4091745396623124387}
   - component: {fileID: 4091745396623124390}
+  - component: {fileID: 54861490298899236}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -11359,12 +11360,27 @@ MonoBehaviour:
   aim: {fileID: 6871169787240317410}
   audioSourceF: {fileID: 1443831853705051371}
   fireSound: {fileID: 8300000, guid: 48283adefda01514e851c40517a63d59, type: 3}
-  lastFireSound: {fileID: 8300000, guid: 79ee7751ab191f548b7f3232381afa0a, type: 3}
   fireEffect:
   - {fileID: 1443831852464268252}
   - {fileID: 2736752468672955433}
   isHit: 0
   hpBar: {fileID: 3831486126168153923}
+--- !u!54 &54861490298899236
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091745396623124413}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4091745396631601095
 GameObject:
   m_ObjectHideFlags: 0

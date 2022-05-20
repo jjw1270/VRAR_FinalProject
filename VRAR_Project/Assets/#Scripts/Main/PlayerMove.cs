@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
     public GameObject player;
     public GameObject mainCam;
-    float moveSpeed = 0.8f;
+    float moveSpeed = 50.0f;
     float cur_angle;
     float prev_angle;
     float delta_angle;
@@ -68,7 +68,7 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        this.transform.Translate(mainCam.transform.forward * moveSpeed);
+        this.transform.Translate(mainCam.transform.forward * moveSpeed * Time.deltaTime);
 
         cur_angle = mainCam.transform.eulerAngles.y;
         delta_angle = cur_angle - prev_angle;

@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-D:/Games/밀화부리/qweqr.apk
+C:/Users/jjw12/Downloads/메추라기/qwert.apk
 SceneListBegin?
 Assets/#Scenes/LobbyScene.unity
 Assets/#Scenes/MainScene.unity
@@ -95,6 +95,7 @@ abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.Tou
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 3165d54eee0d0545cc6427833e3d97c8 Assembly-CSharp.dll:.ParticleMenu
 5d46189bfca968b9b26fd60c37765c3f Assembly-CSharp.dll:.GvrArmModel
+7010650be00e1df216ed174e08d8ba94 Assembly-CSharp.dll:.EnemyPlaneCtrl
 7d37d09af363b70d55d9408e5fb34050 Assembly-CSharp.dll:.WFX_Demo_New
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.GvrEditorEmulator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -202,8 +203,10 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 89c433fef753b02de32958d7fe54cc06 Assembly-CSharp.dll:.GvrLaserVisual
 2d143e103df2247787ec7ae04cb6eb28 Assembly-CSharp.dll:.FPSWalkerEnhanced
 3521ce3e471952c1bdd4cc618dceb5ae Assembly-CSharp.dll:.GvrControllerVisual
+395ebc4b53c0174cce339a3ae421c697 Assembly-CSharp.dll:.EnemyBoomCtrl
 dd7780efe480b95c7be3094f9d1d4270 Assembly-CSharp.dll:.WFX_Demo_Wall
 f1b1d314ca3b7b03e29e12762db58162 Assembly-CSharp.dll:.WFX_BulletHoleDecal
+9ef3bed35508f4bad06ce2c7c7310d9f Assembly-CSharp.dll:.EnemySpawn
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 1a15a086b1c0337a64ec2bee2ef92299 Assembly-CSharp.dll:.GvrPointerGraphicRaycaster
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.ProppelerCtrl
@@ -223,5 +226,4 @@ f0077b931a26a7eeaf5e245c7ef51ec4 Assembly-CSharp.dll:.GvrPointerInputModule
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.GvrXREventsSubscriber
 8ff68079635399589a04ffe47e369fae Assembly-CSharp.dll:.PlayerCtrl
 9ef0ed9504edb9d0914e240dee1b7846 Assembly-CSharp.dll:GoogleVR.Beta.GvrBetaControllerVisualMulti
-46059989cbb32c6e750c948d75639d00 Assembly-CSharp.dll:.EnemyPlaneCtrl
-9ef3bed35508f4bad06ce2c7c7310d9f Assembly-CSharp.dll:.EnemySpawn
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.HPCtrl
