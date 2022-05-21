@@ -11,6 +11,7 @@ TagManager:
   - FxTemporaire
   - WayPath
   - Mine
+  - Destroyed
   layers:
   - Default
   - TransparentFX

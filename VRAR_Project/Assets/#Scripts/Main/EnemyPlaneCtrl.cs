@@ -13,8 +13,10 @@ public class EnemyPlaneCtrl : MonoBehaviour
     public GameObject[] fireEffect;
     private bool isDelay = false;
     private float delayTime = 1.3f;
+    HPCtrl myHP;
     void Start()
     {
+        myHP = this.GetComponent<HPCtrl>();
         waypoint = GameObject.Find("EnemyMovePath").transform.GetComponentsInChildren<Transform>();
         nextIndex = Random.Range(1, waypoint.Length);
 
@@ -27,12 +29,17 @@ public class EnemyPlaneCtrl : MonoBehaviour
         if(target == null)
             MoveWayPoint();
         else{
+            if(myHP.curHP <= 0f) {
+                CancelInvoke("UpdateTarget");
+                return;
+            }
             RaycastHit hit;
             Debug.DrawRay(transform.position, transform.forward * 500f, Color.blue);
             if(Physics.Raycast(transform.position, transform.forward, out hit, 500f, 1<<9)){
                 if(hit.transform.CompareTag("Player")){
                     if(!isDelay){
                         isDelay = true;
+                        Debug.Log("플레이어맞음");
                         StartCoroutine(fireSoundDelay(hit.transform));
                     }
                 }
@@ -56,7 +63,7 @@ public class EnemyPlaneCtrl : MonoBehaviour
     }
 
     IEnumerator fireSoundDelay(Transform player){
-        Debug.Log("플레이어맞음");
+        player.GetComponent<HPCtrl>().isHit = true;
         fireEffect[0].SetActive(true);
         fireEffect[1].SetActive(true);
         audioSource.Play();

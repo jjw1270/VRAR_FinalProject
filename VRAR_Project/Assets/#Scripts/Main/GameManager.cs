@@ -9,14 +9,19 @@ public class GameManager : MonoBehaviour
     public Transform spawnPoint;
     public GameObject player;
     public GameObject[] enemy;
-    private int enemyCount = 0;
+    public static int enemyCount = 0;
     GameObject spawnedPlayer;
-
+    public Transform playerSp;
     private float lastTouchTime;
+    private bool IsOneClick = false;
     private const float doubleTouchDelay = 0.5f;
     public static bool isGamePaused = false;
     public GameObject pauseCam;
-    public int lifeCount = 3;
+    public static int gameScore = 0;
+    public static int lifeCount = 3;
+    public GameObject gameOverTitle;
+    public Text gameOverScore;
+    public GameObject returnToGameBtn;
 
     void Start()
     {
@@ -31,33 +36,28 @@ public class GameManager : MonoBehaviour
         }
 
         if(PlayerMove.isDestroy){
-            lifeCount--;
             PlayerMove.isDestroy = false;
             if(lifeCount == 0) {
-            //목숨3개!
-            //게임오버 UI(일시정지 UI) + 스코어
+                //목숨3개!
+                //게임오버 UI(일시정지 UI) + 스코어
+                Invoke("GameOver", 2f);
             }
             else
-                Invoke("DestroyPlayerAndSpawn", 3f);
+                Invoke("DestroyPlayerAndSpawn", 2f);
         }
 
         //더블 터치 시 일시정지 + UI
-        if(Input.touchCount == 1){
-            Touch touch = Input.GetTouch(0);
-            switch(touch.phase){
-                case TouchPhase.Began:
-                    if(Time.time - lastTouchTime < doubleTouchDelay){  //더블터치판정
-                        if(!isGamePaused)
-                            Pause();
-                    }
-                    break;
-                case TouchPhase.Ended:
-                    lastTouchTime = Time.time;
-                    break;
+        if(Input.GetMouseButtonDown(0)){
+            if(!IsOneClick){
+                lastTouchTime = Time.time;
+                IsOneClick = true;
+            }
+            else if(IsOneClick && ((Time.time - lastTouchTime) < doubleTouchDelay)){
+                //더블터치
+                IsOneClick = false;
+                Pause();
             }
         }
-        if(Input.GetKeyDown(KeyCode.P))
-            Pause();
     }
 
     void CreateObj(int obj){
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         originSpPosition += randomPosition;
 
         if(obj == 1)
-            spawnedPlayer = Instantiate(player, originSpPosition, Quaternion.identity);
+            spawnedPlayer = Instantiate(player, playerSp.position, Quaternion.Euler(new Vector3(0,0,1)));
         else{
             Instantiate(enemy[Random.Range(0,enemy.Length)], originSpPosition, Quaternion.identity);
             enemyCount++;
@@ -104,5 +104,16 @@ public class GameManager : MonoBehaviour
     }
     public void Exit(){
         Application.Quit();
+    }
+
+    void GameOver(){
+        Time.timeScale = 0f;
+        spawnedPlayer.transform.GetChild(0).GetComponent<Camera>().enabled = false;
+        spawnedPlayer.GetComponent<PlayerMove>().audioSourceE.Stop();
+        pauseCam.SetActive(true);
+        gameOverTitle.SetActive(true);
+        returnToGameBtn.SetActive(false);
+        gameOverScore.gameObject.SetActive(true);
+        gameOverScore.text = gameScore.ToString();
     }
 }

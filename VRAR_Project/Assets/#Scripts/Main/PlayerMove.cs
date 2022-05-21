@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     float time = 10f;
     public GameObject explosionEffect;
     public static bool isDestroy = false;
-
+    HPCtrl playerHP;
     GameManager gm;
     
     public AudioSource audioSourceE;
@@ -27,10 +27,8 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        
-        audioSourceE.Play();
+        playerHP = this.gameObject.GetComponent<HPCtrl>();
     }
 
     void Update()
@@ -45,8 +43,8 @@ public class PlayerMove : MonoBehaviour
             warningCount.text = (Mathf.Ceil(time)).ToString();
             if(time <= 0){
                 warningCount.text = "0";
-                Debug.Log("boom");
-                destroy();
+                Debug.Log("맵밖사망");
+                playerHP.curHP = -1f;
             }
         }
         else{
@@ -64,7 +62,7 @@ public class PlayerMove : MonoBehaviour
 
     void MoveLookAt(){
         if(isDestroy) {
-            this.transform.position = (this.transform.position);
+            this.transform.Translate(Vector3.zero * Time.deltaTime);
             return;
         }
 
@@ -90,7 +88,7 @@ public class PlayerMove : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if(other.transform.CompareTag("Boundary")){
-            //맵의 경계에 부딪히면 10초안에 돌아가라고 경고, 10초 지나면 사망
+            //맵의 경계에 부딪치면 10초안에 돌아가라고 경고, 10초 지나면 사망
             Debug.Log("Boundary");
             if(!isWarning){
                 isWarning = true;
@@ -99,28 +97,12 @@ public class PlayerMove : MonoBehaviour
                 isWarning = false;
             }
         }
-        else if(other.transform.CompareTag("MapColli")){
-            //지형과 부딪히면 폭파됨
-            Debug.Log("MAP");
-            destroy();
-        }
-    }
-    void OnCollisionEnter(Collision other) {
-        Debug.Log("HIT");
-        if(other.transform.CompareTag("MapColli") || other.transform.CompareTag("Enemy")){
-            //지형또는 적과 부딪히면 폭파됨
-            destroy();
-        }
-    }
-
-    public void destroy(){
-        if(!isDestroy){
-            isDestroy = true;
-            Destroy(player);
-            Instantiate(explosionEffect, player.transform.position, player.transform.rotation);
-            audioSourceE.Stop();
-            audioSourceE.PlayOneShot(explosionSound);
-
+        else if(other.transform.CompareTag("Enemy")){
+            //적과 부딪치면 폭파됨
+            if(other.transform.GetChild(0).name == "Bomb"){
+                Debug.Log("부딪힘");
+                playerHP.curHP = -1f;
+            }
         }
     }
 }
