@@ -60,20 +60,20 @@ public class GameManager : MonoBehaviour
     }
 
     void CreateObj(int obj){
-        BoxCollider Sp = spawnPoint.GetComponent<BoxCollider>();
-        Vector3 originSpPosition = spawnPoint.position;
-        //콜라이더의 사이즈를 가져오는 bound.size 사용
-        float range_x = Sp.bounds.size.x;
-        float range_z = Sp.bounds.size.z;
-
-        range_x = Random.Range((range_x / 2) * -1, range_x / 2);
-        range_z = Random.Range((range_z / 2) * -1, range_z / 2);
-        Vector3 randomPosition = new Vector3(range_x, Random.Range(0,500), range_z);
-        originSpPosition += randomPosition;
-
         if(obj == 1)
             spawnedPlayer = Instantiate(player, playerSp.position, Quaternion.Euler(new Vector3(0,0,1)));
         else{
+            BoxCollider Sp = spawnPoint.GetComponent<BoxCollider>();
+            Vector3 originSpPosition = spawnPoint.position;
+            //콜라이더의 사이즈를 가져오는 bound.size 사용
+            float range_x = Sp.bounds.size.x;
+            float range_z = Sp.bounds.size.z;
+
+            range_x = Random.Range((range_x / 2) * -1, range_x / 2);
+            range_z = Random.Range((range_z / 2) * -1, range_z / 2);
+            Vector3 randomPosition = new Vector3(range_x, Random.Range(0,500), range_z);
+            originSpPosition += randomPosition;
+
             Instantiate(enemy[Random.Range(0,enemy.Length)], originSpPosition, Quaternion.identity);
             enemyCount++;
         }
