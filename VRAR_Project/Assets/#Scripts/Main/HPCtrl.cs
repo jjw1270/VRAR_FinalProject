@@ -64,7 +64,7 @@ public class HPCtrl : MonoBehaviour
             }
             if(curHP <= 0f && curHP > -99f){
                 if(!PlayerMove.isDestroy){
-                    curHP = -99f;
+                    curHP = -999f;
                     PlayerMove.isDestroy = true;
                     explosionEffect.SetActive(true);
                     GameManager.lifeCount -= 1;
@@ -76,13 +76,15 @@ public class HPCtrl : MonoBehaviour
         
     }
     void LateUpdate(){  //hp바가 나에게 잘 보이게
-        if(!isPlayer)
-            myHpCanvas.transform.LookAt(Camera.main.transform.position);
+        if(!isPlayer){
+            if(!PlayerMove.isDestroy)
+                myHpCanvas.transform.LookAt(Camera.main.transform.position);
+        }
     }
 
     public void playerDestroy(){
         pm.mainCam.transform.GetComponent<AudioListener>().enabled = false;
         pm.mainCam.transform.GetComponent<Camera>().enabled = false;
-        Destroy(pm.player);
+        //Destroy(pm.player);
     }
 }

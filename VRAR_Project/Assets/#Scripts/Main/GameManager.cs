@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
         }
 
         if(PlayerMove.isDestroy){
-            PlayerMove.isDestroy = false;
             if(lifeCount == 0) {
                 //목숨3개!
                 //게임오버 UI(일시정지 UI) + 스코어

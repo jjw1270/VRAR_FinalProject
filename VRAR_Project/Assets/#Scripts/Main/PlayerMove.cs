@@ -29,6 +29,7 @@ public class PlayerMove : MonoBehaviour
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerHP = this.gameObject.GetComponent<HPCtrl>();
+        isDestroy = false;
     }
 
     void Update()
@@ -41,7 +42,8 @@ public class PlayerMove : MonoBehaviour
             warningPanel.SetActive(true);
             time -= Time.deltaTime;
             warningCount.text = (Mathf.Ceil(time)).ToString();
-            if(time <= 0){
+            if(time < 0){
+                time = 0;
                 warningCount.text = "0";
                 Debug.Log("맵밖사망");
                 playerHP.curHP = -1f;
