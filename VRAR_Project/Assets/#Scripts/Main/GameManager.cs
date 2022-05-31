@@ -100,6 +100,10 @@ public class GameManager : MonoBehaviour
     }
     public void GotoLobby(){
         SceneManager.LoadScene("LobbyScene");
+        lifeCount = 3;
+        gameScore = 0;
+        enemyCount = 0;
+        Time.timeScale = 1f;
     }
     public void Exit(){
         Application.Quit();

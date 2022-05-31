@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-C:/Users/jjw12/Downloads/메추라기/vrar_20175334.apk
+D:/UnityProjects/20175334_장윤제_vrarFinal.apk
 SceneListBegin?
 Assets/#Scenes/LobbyScene.unity
 Assets/#Scenes/MainScene.unity
@@ -24,7 +24,6 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.P
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DestroySelf
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:Gvr.Internal.EditorCameraOriginDict
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.PauseCanvas
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
 be6ad8a66ffc6d29f994c4d870929b73 Assembly-CSharp.dll:.UICamCtrl
 2d143e103df2247787ec7ae04cb6eb28 Assembly-CSharp.dll:.FPSWalkerEnhanced
@@ -188,6 +187,7 @@ afc5b93a7b192de2dcb3832fe35a5c7e Assembly-CSharp.dll:.FPSFlyerMouse
 35a9693c388776aaf487636491a20f11 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 c17a32e7235babcec016ccf3cb7fcef6 Assembly-CSharp.dll:.TimedObjectDestructorv2
 e1300922cc039f41ab46a47f4cb05898 Unity.TextMeshPro.dll:TMPro.TMP_Settings
+e2ebaf95ba63e432856862bdc15b2c82 Assembly-CSharp.dll:.PlayerHitEffect
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.GvrControllerTooltipsSimple
 88cc9df3c6fc697bfbeacd24c0d6f2d7 UnityEngine.TestRunner.dll:UnityEngine.TestTools.BeforeAfterTestCommandState
 88cc9df3c6fc697bfbeacd24c0d6f2d7 UnityEngine.TestRunner.dll:UnityEngine.TestTools.EnumerableSetUpTearDownCommandState
@@ -239,4 +239,3 @@ f0077b931a26a7eeaf5e245c7ef51ec4 Assembly-CSharp.dll:.GvrPointerInputModule
 f1aa77af46b3fc436306a6ef52a92666 Assembly-CSharp.dll:.PlayerCtrl
 9ef0ed9504edb9d0914e240dee1b7846 Assembly-CSharp.dll:GoogleVR.Beta.GvrBetaControllerVisualMulti
 d37254cb5c9152d8cbdc3c8c97771174 Assembly-CSharp.dll:.FPSFlyerMousePhysics
-e2ebaf95ba63e432856862bdc15b2c82 Assembly-CSharp.dll:.PlayerHitEffect
